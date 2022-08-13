@@ -1,24 +1,24 @@
 {
 	"schema_version": 1,
 	"quilt_loader": {
-		"group": "io.github.tropheusj",
-		"id": "modid",
+		"group": "io.github.ignoramuses",
+		"id": "wiicraft",
 		"version": "${version}",
 		"metadata": {
-			"name": "Modid",
-			"description": "A short description of your mod.",
+			"name": "WiiCraft",
+			"description": "A Minecraft mod that lets you use a Wiimote and Nunchuk. Made for Modfest: Singularity.",
 			"contributors": {
-				"Tropheus Jay": "Owner"
+				"Ignoramuses": "Owner"
 			},
 			"contact": {
-				"issues": "https://github.com/TropheusJ/quilt-template-mod/issues",
-				"sources": "https://github.com/TropheusJ/quilt-template-mod"
+				"issues": "https://github.com/Ignoramuses/wiicraft/issues",
+				"sources": "https://github.com/Ignoramuses/wiicraft"
 			},
-			"icon": "assets/modid/icon.png"
+			"icon": "assets/wiicraft/icon.png"
 		},
 		"intermediate_mappings": "net.fabricmc:intermediary",
 		"entrypoints": {
-			"init": "io.github.tropheusj.modid.ExampleMod"
+			"init": "io.github.ignoramuses.wiicraft.WiiCraft"
 		},
 		"depends": [
 			{
@@ -35,5 +35,5 @@
 			}
 		]
 	},
-	"mixin": "modid.mixins.json"
+	"mixin": "wiicraft.mixins.json"
 }

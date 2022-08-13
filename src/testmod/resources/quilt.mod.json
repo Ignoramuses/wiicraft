@@ -1,26 +1,26 @@
 {
 	"schema_version": 1,
 	"quilt_loader": {
-		"group": "io.github.tropheusj",
-		"id": "modid_test",
+		"group": "io.github.ignoramuses",
+		"id": "wiicraft_test",
 		"version": "1.0.0",
 		"metadata": {
-			"name": "Modid Test",
-			"description": "A short description of your mod.",
+			"name": "WiiCraft Test",
+			"description": "Test mod for WiiCraft.",
 			"contributors": {
-				"Tropheus Jay": "Owner"
+        "Ignoramuses": "Owner"
 			},
 			"contact": {
-				"issues": "https://github.com/TropheusJ/quilt-template-mod/issues",
-				"sources": "https://github.com/TropheusJ/quilt-template-mod"
+				"issues": "https://github.com/Ignoramuses/wiicraft/issues",
+				"sources": "https://github.com/Ignoramuses/wiicraft"
 			},
-			"icon": "assets/modid_test/icon.png"
+			"icon": "assets/wiicraft_test/icon.png"
 		},
 		"intermediate_mappings": "net.fabricmc:intermediary",
 		"entrypoints": {
-			"init": "io.github.tropheusj.modid_test.ExampleModTest",
+			"init": "io.github.ignoramuses.wiicraft_test.ExampleModTest",
       "fabric-gametest": [
-        "io.github.tropheusj.modid_test.gametest.ExampleModGameTest"
+        "io.github.ignoramuses.wiicraft_test.gametest.ExampleModGameTest"
       ]
 		}
 	}
