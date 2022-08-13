@@ -16,9 +16,7 @@ public class WiiCraft implements ModInitializer {
 
 	@Override
 	public void onInitialize(ModContainer mod) {
-
-		System.load("wiiuse.dll");
-
+		NativeLoader.load();
 		API_MAN = new WiiUseApiManager();
 
 		LOGGER.info("hello from " + this.getClass().getName());
