@@ -6,46 +6,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.minecraft.resources.ResourceLocation;
-import net.sorenon.wiiuse_lwjgl.Wiimotes;
-import net.sorenon.wiiuse_lwjgl.Wiiuse;
+import wiiusej.WiiUseApiManager;
 
 public class WiiCraft implements ModInitializer {
 	public static final String ID = "wiicraft";
 	public static final Logger LOGGER = LoggerFactory.getLogger(ID);
 
-	public static Wiimotes wiimotes;
+	public static WiiUseApiManager API_MAN;
 
 	@Override
 	public void onInitialize(ModContainer mod) {
-		wiimotes = Wiimotes.init(1);
 
-		System.out.println(wiimotes);
-		var res = wiimotes.find(1);
-		System.out.println(wiimotes + "_" + res);
-		if (res != 0) {
-			var res2 = wiimotes.connect();
-			System.out.println(wiimotes + "_" + res + "_" + res2 + "!");
+		System.load("wiiuse.dll");
 
-			var wiimote = new Wiimote(wiimotes.getWiimote(0));
-
-			wiimote.setLEDs(Wiiuse.WIIMOTE_LED_2 + Wiiuse.WIIMOTE_LED_3);
-			wiimote.setRumble(1);
-			try {
-				Thread.sleep(200);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			wiimote.setRumble(0);
-
-			wiimote.enableIR();
-
-			while (wiimote.isConnected()) {
-				if (wiimotes.poll() != 0) {
-					wiimote.handle_event();
-				}
-			}
-		}
-
+		API_MAN = new WiiUseApiManager();
 
 		LOGGER.info("hello from " + this.getClass().getName());
 	}
