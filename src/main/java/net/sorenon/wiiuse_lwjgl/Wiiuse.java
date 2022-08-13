@@ -1,13 +1,10 @@
 package net.sorenon.wiiuse_lwjgl;
 
-import static org.lwjgl.system.APIUtil.apiGetFunctionAddress;
-import static org.lwjgl.system.JNI.callPI;
-import static org.lwjgl.system.JNI.invokeJV;
-import static org.lwjgl.system.JNI.invokeP;
-import static org.lwjgl.system.JNI.invokePI;
-
 import org.lwjgl.system.Library;
 import org.lwjgl.system.SharedLibrary;
+
+import static org.lwjgl.system.APIUtil.apiGetFunctionAddress;
+import static org.lwjgl.system.JNI.*;
 
 public class Wiiuse {
 	private static final SharedLibrary WIIUSE = Library.loadNative(Wiiuse.class, "net.sorenon.wiiuse_lwjgl", "wiiuse.dll", true);
@@ -25,6 +22,10 @@ public class Wiiuse {
 				wiiuse_find = apiGetFunctionAddress(WIIUSE, "wiiuse_find"),
 				wiiuse_set_leds = apiGetFunctionAddress(WIIUSE, "wiiuse_set_leds"),
 				wiiuse_rumble = apiGetFunctionAddress(WIIUSE, "wiiuse_rumble"),
+				wiiuse_jni_get_state = apiGetFunctionAddress(WIIUSE, "wiiuse_jni_get_state"),
+				wiiuse_jni_get_event = apiGetFunctionAddress(WIIUSE, "wiiuse_jni_get_event"),
+				wiiuse_jni_wiimote_buttons = apiGetFunctionAddress(WIIUSE, "wiiuse_jni_wiimote_buttons"),
+				wiiuse_poll = apiGetFunctionAddress(WIIUSE, "wiiuse_poll"),
 				wiiuse_connect = apiGetFunctionAddress(WIIUSE, "wiiuse_connect");
 	}
 
@@ -33,6 +34,26 @@ public class Wiiuse {
 	public static final int WIIMOTE_LED_2 = 0x20;
 	public static final int WIIMOTE_LED_3 = 0x40;
 	public static final int WIIMOTE_LED_4 = 0x80;
+
+	public static final int WIIMOTE_STATE_CONNECTED = 0x0008;
+
+	public static final int WIIMOTE_BUTTON_TWO = 0x0001;
+	public static final int WIIMOTE_BUTTON_ONE = 0x0002;
+	public static final int WIIMOTE_BUTTON_B = 0x0004;
+	public static final int WIIMOTE_BUTTON_A = 0x0008;
+	public static final int WIIMOTE_BUTTON_MINUS = 0x0010;
+	public static final int WIIMOTE_BUTTON_ZACCEL_BIT6 = 0x0020;
+	public static final int WIIMOTE_BUTTON_ZACCEL_BIT7 = 0x0040;
+	public static final int WIIMOTE_BUTTON_HOME = 0x0080;
+	public static final int WIIMOTE_BUTTON_LEFT = 0x0100;
+	public static final int WIIMOTE_BUTTON_RIGHT = 0x0200;
+	public static final int WIIMOTE_BUTTON_DOWN = 0x0400;
+	public static final int WIIMOTE_BUTTON_UP = 0x0800;
+	public static final int WIIMOTE_BUTTON_PLUS = 0x1000;
+	public static final int WIIMOTE_BUTTON_ZACCEL_BIT4 = 0x2000;
+	public static final int WIIMOTE_BUTTON_ZACCEL_BIT5 = 0x4000;
+	public static final int WIIMOTE_BUTTON_UNKNOWN = 0x8000;
+	public static final int WIIMOTE_BUTTON_ALL = 0x1F9F;
 
 	public static Wiimotes init(int wiimotes) {
 		long addr = nwiiuse_init(wiimotes);
@@ -62,5 +83,25 @@ public class Wiiuse {
 	public static void wiiuse_rumble(long wm, int status) {
 		long __functionAddress = Functions.wiiuse_rumble;
 		invokeJV(wm, status, __functionAddress);
+	}
+
+	public static int wiiuse_jni_get_state(long wm) {
+		long __functionAddress = Functions.wiiuse_jni_get_state;
+		return invokePI(wm, __functionAddress);
+	}
+
+	public static int wiiuse_jni_get_event(long wm) {
+		long __functionAddress = Functions.wiiuse_jni_get_event;
+		return invokePI(wm, __functionAddress);
+	}
+
+	public static int wiiuse_jni_wiimote_buttons(long wm) {
+		long __functionAddress = Functions.wiiuse_jni_wiimote_buttons;
+		return invokePI(wm, __functionAddress);
+	}
+
+	public static int wiiuse_poll(long wiimotes, int num) {
+		long __functionAddress = Functions.wiiuse_poll;
+		return invokePI(wiimotes, num, __functionAddress);
 	}
 }
