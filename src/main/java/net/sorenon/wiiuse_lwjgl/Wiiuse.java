@@ -26,6 +26,7 @@ public class Wiiuse {
 				wiiuse_jni_get_event = apiGetFunctionAddress(WIIUSE, "wiiuse_jni_get_event"),
 				wiiuse_jni_wiimote_buttons = apiGetFunctionAddress(WIIUSE, "wiiuse_jni_wiimote_buttons"),
 				wiiuse_poll = apiGetFunctionAddress(WIIUSE, "wiiuse_poll"),
+				wiiuse_set_ir = apiGetFunctionAddress(WIIUSE, "wiiuse_set_ir"),
 				wiiuse_connect = apiGetFunctionAddress(WIIUSE, "wiiuse_connect");
 	}
 
@@ -54,11 +55,6 @@ public class Wiiuse {
 	public static final int WIIMOTE_BUTTON_ZACCEL_BIT5 = 0x4000;
 	public static final int WIIMOTE_BUTTON_UNKNOWN = 0x8000;
 	public static final int WIIMOTE_BUTTON_ALL = 0x1F9F;
-
-	public static Wiimotes init(int wiimotes) {
-		long addr = nwiiuse_init(wiimotes);
-		return new Wiimotes(addr, wiimotes);
-	}
 
 	public static long nwiiuse_init(int wiimotes) {
 		long __functionAddress = Functions.wiiuse_init;
@@ -103,5 +99,10 @@ public class Wiiuse {
 	public static int wiiuse_poll(long wiimotes, int num) {
 		long __functionAddress = Functions.wiiuse_poll;
 		return invokePI(wiimotes, num, __functionAddress);
+	}
+
+	public static int wiiuse_set_ir(long wiimotes, int status) {
+		long __functionAddress = Functions.wiiuse_set_ir;
+		return invokePI(wiimotes, status, __functionAddress);
 	}
 }
