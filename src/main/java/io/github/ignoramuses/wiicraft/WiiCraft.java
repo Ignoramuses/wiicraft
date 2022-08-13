@@ -1,5 +1,6 @@
 package io.github.ignoramuses.wiicraft;
 
+import org.jetbrains.annotations.Nullable;
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;
 import org.slf4j.Logger;
@@ -12,12 +13,14 @@ public class WiiCraft implements ModInitializer {
 	public static final String ID = "wiicraft";
 	public static final Logger LOGGER = LoggerFactory.getLogger(ID);
 
-	public static WiiUseApiManager API_MAN;
+	@Nullable
+	public static WiiUseApiManager API_MAN = null;
 
 	@Override
 	public void onInitialize(ModContainer mod) {
-		NativeLoader.load();
-		API_MAN = new WiiUseApiManager();
+		if (NativeLoader.load()) {
+			API_MAN = new WiiUseApiManager();
+		}
 
 		LOGGER.info("hello from " + this.getClass().getName());
 	}
