@@ -18,7 +18,8 @@
 		},
 		"intermediate_mappings": "net.fabricmc:intermediary",
 		"entrypoints": {
-			"init": "io.github.ignoramuses.wiicraft.WiiCraft"
+			"init": "io.github.ignoramuses.wiicraft.WiiCraft",
+      "client_init": "io.github.ignoramuses.wiicraft.WiiCraftClient"
 		},
 		"depends": [
 			{
